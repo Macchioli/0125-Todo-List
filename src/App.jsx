@@ -1,40 +1,69 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import { useState } from 'react'
+
 import './App.css'
+
+
+const TODO_LIST = [
+
+  {id: 1, text:"Dormir", completed: false},
+  {id: 2, text:"Tarea 2", completed: true},
+  {id: 3, text:"Tarea 3", completed: true},
+  {id: 4, text:"Tarea 4", completed: false},
+  {id: 5, text:"Tarea 5", completed: true},
+
+]
 
 function App() {
 
-  const [count, setCount] = useState(0)
 
-  const [usuario, setUsuario] = useState("")
-
-  function incrementCounter(){
-
-      setCount(count + 1) 
-  
-  }
-
-  function updateUserName(e){
-
-    const name = e.target.value;
-
-    setUsuario(name)
-
-  }
-  
 
   return (
     <>
-      <h1>Contador</h1>
-      <h2>Valor actual: {count} </h2>
-      <button onClick={()=> incrementCounter() }>Add +</button>
-
+      <h1 className='todo-list-tile'> 
+        TODO LIST REACT:
+      </h1>
       <hr />
+      <div className="input-container">
+        <label htmlFor="">Agregar tarea:</label>
+        <input type="text" />
+      </div>
 
-      <input type="text" onKeyUp={(evt) => updateUserName(evt)} />
-      <h3>Bienvenido {usuario} </h3>
+      <div className="todo-list-container">
+
+        <ul className="todo-list">
+          
+          {
+             TODO_LIST.map( (todo) => {
+
+                  return(
+
+                    <li className="todo-item">
+            
+                    <div className="todo-left">
+                      <input type="checkbox" className='todo-checkbox'/>
+                      <span className='todo-item'>
+                        {todo.text}
+                      </span>
+                    </div>
+        
+                    <button className="todo-delete">❌</button>
+        
+                  </li>
+
+
+                  )
+
+             } )
+
+
+          }
+
+         
+          
+        </ul>
+
+
+      </div>
+
     </>
   )
 }
